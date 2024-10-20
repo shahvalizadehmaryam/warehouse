@@ -1,9 +1,7 @@
-import "./App.css";
-
 function App() {
   return (
     <>
-      <h3>App</h3>
+      <h3>پنل ادمین</h3>
     </>
   );
 }
