@@ -1,5 +1,7 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 const TanstackQueryProvider = ({children}) => {
-    const queryClient = new queryClient();
+    const queryClient = new QueryClient();
     return ( 
         <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
      );

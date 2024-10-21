@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useRegister } from "services/mutations";
 
 const RegistrationPage = () => {
   const [form, setForm] = useState({
@@ -6,6 +7,7 @@ const RegistrationPage = () => {
     password: "",
     confirmPassword: "",
   });
+  const { mutate } = useRegister();
   const changeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -13,6 +15,14 @@ const RegistrationPage = () => {
   };
   const formSubmitHandler = (event) => {
     event.preventDefault();
+    const { username, password, confirmPassword } = form;
+    mutate(
+      { username, password },
+      {
+        onSuccess: (data) => console.log(data.data.message),
+        onError: (error) => console.log(error.response.data.message),
+      }
+    );
   };
   return (
     <form onSubmit={formSubmitHandler}>
