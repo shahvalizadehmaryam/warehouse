@@ -1,8 +1,14 @@
+import { BrowserRouter } from "react-router-dom";
+import Router from "router/Router";
+import TanstackQueryProvider from "./providers/TanstackQueryProvider";
+
 function App() {
   return (
-    <>
-      <h3>پنل ادمین</h3>
-    </>
+    <TanstackQueryProvider>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </TanstackQueryProvider>
   );
 }
 
