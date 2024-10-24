@@ -5,4 +5,8 @@ const useRegister = () => {
 
   return useMutation({ mutationFn });
 };
-export { useRegister };
+const useLogin = () => {
+  const mutationFn = (data) => api.post("auth/login", data);
+  return useMutation({ mutationFn });
+};
+export { useRegister, useLogin };

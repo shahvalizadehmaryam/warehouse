@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRegister } from "services/mutations";
 
 const RegistrationPage = () => {
@@ -8,6 +9,7 @@ const RegistrationPage = () => {
     confirmPassword: "",
   });
   const { mutate } = useRegister();
+  const navigate = useNavigate();
   const changeHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -19,7 +21,10 @@ const RegistrationPage = () => {
     mutate(
       { username, password },
       {
-        onSuccess: (data) => console.log(data.data.message),
+        onSuccess: (data) => {
+          console.log(data.data.message);
+          navigate("/login");
+        },
         onError: (error) => console.log(error.response.data.message),
       }
     );
