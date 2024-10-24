@@ -4,6 +4,7 @@
   border: 1px solid #e4e4e4;
   border-radius: 30px;
   overflow: hidden;
+
 }
 .products thead th {
   border: none;
@@ -27,20 +28,7 @@
   background-color: #f2f2f2;
   cursor: pointer;
 }
-.products thead th:first-child {
-  border-top-right-radius: 30px;
-}
 
-.products thead th:last-child {
-  border-top-left-radius: 30px;
-}
-.products tbody tr:last-child td:first-child {
-  border-bottom-right-radius: 30px;
-}
-
-.products tbody tr:last-child td:last-child {
-  border-bottom-left-radius: 30px;
-}
 .actions {
   display: flex;
   align-items: center;

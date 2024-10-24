@@ -23,7 +23,7 @@ const Products = () => {
           <tr key={productItem.id}>
             <td>{productItem.name}</td>
             <td>{productItem.quantity}</td>
-            <td>{productItem.price}</td>
+            <td>{productItem.price} هزار تومان</td>
             <td>{productItem.id}</td>
             <td>
               <div className={styles.actions}>
