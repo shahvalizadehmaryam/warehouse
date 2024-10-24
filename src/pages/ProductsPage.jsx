@@ -1,9 +1,13 @@
-import { useProducts } from "services/queries";
+
+import Products from "components/modules/Products";
 
 const ProductsPage = () => {
-  const { data, isPending } = useProducts();
-  console.log("data", { data, isPending });
-  return <h3>ProductsPage</h3>;
+
+  return (
+   <>
+   <Products />
+   </>
+  );
 };
 
 export default ProductsPage;

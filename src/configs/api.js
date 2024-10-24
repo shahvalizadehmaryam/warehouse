@@ -8,8 +8,10 @@ const api = axios.create({
   },
 });
 api.interceptors.request.use((request) => {
-  // const token = getCookie();
-  // console.log("token",token)
+  const token = getCookie("token");
+  if (token) {
+    request.headers["Authorization"] = `Bearer ${token}`;
+  }
   return request;
 });
 api.interceptors.response.use((response) => {

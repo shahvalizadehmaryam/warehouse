@@ -1,0 +1,20 @@
+.products {
+  border-collapse: collapse;
+  width: 100%;
+}
+.products th {
+    border: none;
+    text-align: right;
+  }
+.products th,
+.products td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.products th{
+    background-color: #F2F2F2;
+}
+.products tr:hover {
+    background-color: #F2F2F2;
+    cursor: pointer;
+}
