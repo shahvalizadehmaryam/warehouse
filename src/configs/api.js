@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCookie } from "utils/cookie";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -7,6 +8,8 @@ const api = axios.create({
   },
 });
 api.interceptors.request.use((request) => {
+  // const token = getCookie();
+  // console.log("token",token)
   return request;
 });
 api.interceptors.response.use((response) => {
