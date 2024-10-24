@@ -3,10 +3,9 @@ import styles from "./Products.module.css";
 const Products = () => {
   const { data, isPending } = useProducts();
   if (isPending) return <h3>Loading...</h3>;
-  if (!data || !data.data) {
+  if (!data || !data.data.data) {
     return <h3>رکوردی جهت نمایش یافت نشد.</h3>;
   }
-  console.log("xx", data.data.data);
   console.log("data", { data, isPending });
   return (
     <table className={styles.products}>
@@ -16,7 +15,7 @@ const Products = () => {
           <th>موجودی</th>
           <th>قیمت</th>
           <th>شناسه کالا</th>
-          <th>عملیات</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -26,7 +25,12 @@ const Products = () => {
             <td>{productItem.quantity}</td>
             <td>{productItem.price}</td>
             <td>{productItem.id}</td>
-            <td>فثسف</td>
+            <td>
+              <div className={styles.actions}>
+                <img src="edit.svg" alt="edit" />
+                <img src="trash.svg" alt="delete" />
+              </div>
+            </td>
           </tr>
         ))}
       </tbody>
