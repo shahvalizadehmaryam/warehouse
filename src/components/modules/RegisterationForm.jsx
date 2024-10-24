@@ -30,7 +30,6 @@ const RegistrationForm = () => {
     );
   };
   return (
-    <div>
       <form onSubmit={formSubmitHandler} className={styles.form}>
         <div className={styles.logoPart}>
           <img src="union.svg" alt="logo" />
@@ -57,15 +56,13 @@ const RegistrationForm = () => {
           onChange={changeHandler}
           placeholder="تکرار رمز عبور"
         />
-        <button type="submit" className={styles.registerBtn}>
+        <button type="submit" className={styles.authBtn}>
           ثبت نام
         </button>
         <Link to="/login">
         <span className={styles.accountLink}>حساب کاربری دارید؟</span>
       </Link>
       </form>
-
-    </div>
   );
 };
 
