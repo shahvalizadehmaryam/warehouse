@@ -7,7 +7,7 @@ const ProductHeader = () => {
         <img src="setting.svg" alt="manageProductIcon" />
         <span>مدیریت کالا</span>
       </div>
-      <button>افزودن محصول</button>
+      <button className={styles.addProductBtn}>افزودن محصول</button>
     </div>
   );
 };
