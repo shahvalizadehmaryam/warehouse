@@ -17,13 +17,7 @@ setForm((prevForm) => ({ ...prevForm, [name]: value }));
 };
 const formSubmitHandler = (event) => {
 event.preventDefault();
-mutate(form, {
-    onSuccess: (data) => {
-    setCookie("token", data.data?.token);
-    navigate("/");
-    },
-    onError: (error) => console.log(error.response.data.message),
-});
+
 };
 return (
 <form onSubmit={formSubmitHandler} className={styles.form}>

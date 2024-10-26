@@ -9,4 +9,8 @@ const useLogin = () => {
   const mutationFn = (data) => api.post("auth/login", data);
   return useMutation({ mutationFn });
 };
-export { useRegister, useLogin };
+const useDeleteProducts = () => {
+  const mutationFn = (data) => api.delete(`products/${data}`);
+  return useMutation({ mutationFn });
+};
+export { useRegister, useLogin, useDeleteProducts };
