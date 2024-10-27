@@ -1,6 +1,21 @@
+import { useQueryClient } from "@tanstack/react-query";
 import styles from "./DeleteModal.module.css";
-const DeleteModal = ({ isOpen, onClose, onConfirm }) => {
+import { useDeleteProducts } from "services/mutations";
+const DeleteModal = ({ isOpen, onClose, productId }) => {
+  const queryClient = useQueryClient();
+  const { mutate } = useDeleteProducts();
   if (!isOpen) return null;
+  const confirmDeleteHandler = () => {
+    mutate(productId, {
+      onSuccess: (data) => {
+        console.log("data in onsuccess", data);
+        queryClient.invalidateQueries({ queryKey: ["products"] });
+        onClose();
+      },
+      onError: (error) => console.log("error in onError", error),
+    });
+  };
+
   return (
     <div className={styles.container} onClick={onClose}>
       <div className={styles.main} onClick={(e) => e.stopPropagation()}>
@@ -10,11 +25,14 @@ const DeleteModal = ({ isOpen, onClose, onConfirm }) => {
           <div className={styles.actions}>
             <button
               className={`${styles.confirmBtn} ${styles.btn}`}
-              onClick={onConfirm}
+              onClick={confirmDeleteHandler}
             >
               حذف
             </button>
-            <button className={`${styles.cancel} ${styles.btn}`} onClick={onClose}>
+            <button
+              className={`${styles.cancel} ${styles.btn}`}
+              onClick={onClose}
+            >
               لغو
             </button>
           </div>
