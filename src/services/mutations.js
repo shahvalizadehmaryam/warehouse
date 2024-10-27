@@ -10,7 +10,11 @@ const useLogin = () => {
   return useMutation({ mutationFn });
 };
 const useDeleteProducts = () => {
-  const mutationFn = (data) => api.delete(`products/${data}`);
+  const mutationFn = (data) => api.post("auth/login", data);
   return useMutation({ mutationFn });
 };
-export { useRegister, useLogin, useDeleteProducts };
+const useAddProduct = () => {
+  const mutationFn = (data) => api.post("products/", data);
+  return useMutation({ mutationFn });
+};
+export { useRegister, useLogin, useDeleteProducts, useAddProduct };

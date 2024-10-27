@@ -17,6 +17,19 @@ setForm((prevForm) => ({ ...prevForm, [name]: value }));
 };
 const formSubmitHandler = (event) => {
 event.preventDefault();
+const { username, password } = form;
+
+    if (!username || !password)
+      return alert("User Name and Password is Necessary");
+
+    mutate(form, {
+      onSuccess: (data) => {
+        console.log(data.data);
+        setCookie("token", data.data?.token);
+        navigate("/");
+      },
+      onError: (error) => console.log(error.response.data.message),
+    });
 
 };
 return (
