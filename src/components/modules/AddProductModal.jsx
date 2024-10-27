@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 const AddProductModal = ({ isOpen, onClose }) => {
   const [form, setForm] = useState({
     name: "",
-    price: 0,
-    quantity: 0,
+    price: "",
+    quantity: "",
   });
   const queryClient = useQueryClient();
   const { mutate } = useAddProduct();
@@ -48,7 +48,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
             <div className={styles.formGroup}>
               <label>تعداد موجودی</label>
               <input
-                type="number"
+                type="text"
                 name="price"
                 value={form.price}
                 onChange={changeHandler}
@@ -58,7 +58,7 @@ const AddProductModal = ({ isOpen, onClose }) => {
             <div className={styles.formGroup}>
               <label>قیمت</label>
               <input
-                type="number"
+                type="text"
                 name="quantity"
                 value={form.quantity}
                 onChange={changeHandler}
