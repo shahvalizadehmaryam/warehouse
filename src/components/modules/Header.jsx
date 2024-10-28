@@ -6,17 +6,22 @@ const Header = ({ searchVal, setSearchVal }) => {
   };
   return (
     <header className={styles.header}>
-      <input
-        type="text"
-        placeholder="جستجو کالا"
-        value={searchVal}
-        onChange={handleInputChange}
-      />
+      <div className={styles.searchContainer}>
+        <img src="search.svg" alt="search icon" className={styles.searchIcon} />
+        <input
+          type="text"
+          placeholder="جستجو کالا"
+          value={searchVal}
+          onChange={handleInputChange}
+          className={styles.searchInput}
+        />
+      </div>
+      <div className={styles.divider}></div>
       <div className={styles.profile}>
         <img src="profile.jpg" alt="avatar" />
         <div>
-          <p>میلاد عظمی</p>
-          <p>مدیر</p>
+          <p className={styles.profileName}>میلاد عظمی</p>
+          <p className={styles.role}>مدیر</p>
         </div>
       </div>
     </header>
