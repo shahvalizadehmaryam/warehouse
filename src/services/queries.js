@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "configs/api";
 const useGetAllProducts = (page, searchVal) => {
-  console.log(`page is ${page} and searchVal is ${searchVal}`);
   const queryKey = ["products", page, searchVal];
   const queryFn = async ({ signal }) => {
     const searchParam = searchVal ? `&name=${searchVal}` : "";
