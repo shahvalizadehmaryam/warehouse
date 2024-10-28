@@ -24,8 +24,8 @@ const { username, password } = form;
 
     mutate(form, {
       onSuccess: (data) => {
-        console.log(data.data);
-        setCookie("token", data.data?.token);
+        console.log(data);
+        setCookie("token", data?.token);
         navigate("/");
       },
       onError: (error) => console.log(error.response.data.message),

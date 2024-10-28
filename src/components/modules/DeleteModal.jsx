@@ -31,7 +31,10 @@ const DeleteModal = ({ isOpen, onClose, productId }) => {
             </button>
             <button
               className={`${styles.cancel} ${styles.btn}`}
-              onClick={onClose}
+              onClick={(event) => {
+                event.preventDefault();
+                onClose();
+              }}
             >
               لغو
             </button>

@@ -1,30 +1,27 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import RegistrationPage from "pages/RegistrationPage";
 import LoginPage from "pages/LoginPage";
 import ProductsPage from "pages/ProductsPage";
 import NotFoundPage from "pages/NotFound";
-import { getCookie } from "utils/cookie";
-
+import AuthProvider from "providers/AuthProvider";
+import Layout from "layouts/Layout";
 
 const Router = () => {
-
-    const token = getCookie("token");
-    console.log("token in routes", token);
-
   return (
     <Routes>
       <Route
-        index
-        element={token ? <ProductsPage /> : <Navigate to="/login" />}
+        path="/"
+        element={
+          <Layout>
+            <AuthProvider>
+              <ProductsPage />
+            </AuthProvider>
+          </Layout>
+        }
       />
-      <Route
-        path="/register"
-        element={token ? <Navigate to="/" /> : <RegistrationPage />}
-      />
-      <Route
-        path="/login"
-        element={token ? <Navigate to="/" /> : <LoginPage />}
-      />
+
+      <Route path="/register" element={<RegistrationPage />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
