@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
 import RegistrationPage from "pages/RegistrationPage";
 import LoginPage from "pages/LoginPage";
-import ProductsPage from "pages/ProductsPage";
+// import ProductsPage from "pages/ProductsPage";
 import NotFoundPage from "pages/NotFound";
 import AuthProvider from "providers/AuthProvider";
-import Layout from "layouts/Layout";
+import Home from "../components/templates/Home";
+
 
 const Router = () => {
   return (
@@ -12,11 +13,9 @@ const Router = () => {
       <Route
         path="/"
         element={
-          <Layout>
             <AuthProvider>
-              <ProductsPage />
+              <Home />
             </AuthProvider>
-          </Layout>
         }
       />
 

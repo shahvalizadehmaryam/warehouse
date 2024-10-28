@@ -1,11 +1,11 @@
 import Products from "components/modules/Products";
 import ProductHeader from "components/modules/ProductHeader";
-
-const ProductsPage = () => {
+// eslint-disable-next-line
+const ProductsPage = ({ searchVal }) => {
   return (
     <div>
       <ProductHeader />
-      <Products />
+      <Products searchVal={searchVal} />
     </div>
   );
 };
