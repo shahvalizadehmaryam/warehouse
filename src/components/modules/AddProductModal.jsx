@@ -20,11 +20,11 @@ const AddProductModal = ({ isOpen, onClose, productId }) => {
   // Update form values with fetched product data if available
   useEffect(() => {
     if (productData && productId) {
-         setForm({
+      setForm({
         name: productData.name || "",
         price: productData.price || "",
         quantity: productData.quantity || "",
-      }); 
+      });
     }
   }, [productData, productId]);
 
@@ -35,8 +35,9 @@ const AddProductModal = ({ isOpen, onClose, productId }) => {
   };
   const formSubmitHandler = (event) => {
     event.preventDefault();
+    const mutationData = productId ? { id: productId, ...form } : form;
     const mutationFn = productId ? editProductMutate : addProductMutate;
-    mutationFn(form, {
+    mutationFn(mutationData, {
       onSuccess: (data) => {
         console.log("data in onsuccess", data);
         queryClient.invalidateQueries({ queryKey: ["products"] });
