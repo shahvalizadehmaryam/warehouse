@@ -6,21 +6,18 @@ import { useGetAllProducts } from "services/queries";
 import Pagination from "./Pagination";
 // eslint-disable-next-line
 const Products = ({ searchVal }) => {
-  console.log("searchval", { searchVal });
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [productIdToDelete, setProductIdToDelete] = useState(null);
   const [page, setPage] = useState(1);
 
   const { data, isPending, error } = useGetAllProducts(page, searchVal);
-  console.log("dataaa", data);
   useEffect(() => {
     setPage(1); // Reset to page 1 on new search
   }, [searchVal]);
 
   if (isPending) return <h3>Loading...</h3>;
   if (error) return <p>دیتایی یافت نشد.</p>
-  console.log("data", { data, isPending });
   // Open modal and set the product ID to delete
   const showDeleteModal = (productId) => {
     setProductIdToDelete(productId);
@@ -57,8 +54,9 @@ const Products = ({ searchVal }) => {
           {data?.map((productItem) => (
             <tr key={productItem.id}>
               <td>{productItem.name}</td>
-              <td>{productItem.quantity}</td>
-              <td>{productItem.price} هزار تومان</td>
+              <td>{productItem.price}</td>
+              <td>{productItem.quantity}هزار تومان</td>
+              
               <td>{productItem.id}</td>
               <td>
                 <div className={styles.actions}>

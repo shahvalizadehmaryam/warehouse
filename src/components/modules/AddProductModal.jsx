@@ -1,4 +1,3 @@
-import { useQueryClient } from "@tanstack/react-query";
 import { useAddProduct } from "services/mutations";
 import styles from "./AddProductModal.module.css";
 import { useEffect, useState } from "react";
@@ -10,13 +9,9 @@ const AddProductModal = ({ isOpen, onClose, productId }) => {
     price: 0,
     quantity: 0,
   });
-
-  const queryClient = useQueryClient();
   const { mutate: addProductMutate } = useAddProduct();
   const { mutate: editProductMutate } = useEditProducts();
   const { data: productData } = useProductsById(productId);
-  console.log("productData", productData);
-  console.log("productId", productId);
   // Update form values with fetched product data if available
   useEffect(() => {
     if (productData && productId) {
@@ -39,8 +34,6 @@ const AddProductModal = ({ isOpen, onClose, productId }) => {
     const mutationFn = productId ? editProductMutate : addProductMutate;
     mutationFn(mutationData, {
       onSuccess: (data) => {
-        console.log("data in onsuccess", data);
-        queryClient.invalidateQueries({ queryKey: ["products"] });
         onClose();
       },
       onError: (error) => console.log(error.response.data.message),

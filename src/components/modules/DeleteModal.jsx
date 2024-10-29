@@ -1,15 +1,11 @@
-import { useQueryClient } from "@tanstack/react-query";
 import styles from "./DeleteModal.module.css";
 import { useDeleteProducts } from "services/mutations";
 const DeleteModal = ({ isOpen, onClose, productId }) => {
-  const queryClient = useQueryClient();
   const { mutate } = useDeleteProducts();
   if (!isOpen) return null;
   const confirmDeleteHandler = () => {
     mutate(productId, {
       onSuccess: (data) => {
-        console.log("data in onsuccess", data);
-        queryClient.invalidateQueries({ queryKey: ["products"] });
         onClose();
       },
       onError: (error) => console.log("error in onError", error),

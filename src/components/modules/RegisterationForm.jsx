@@ -22,7 +22,6 @@ const RegistrationForm = () => {
       { username, password },
       {
         onSuccess: (data) => {
-          console.log(data.data.message);
           navigate("/login");
         },
         onError: (error) => console.log(error.response.data.message),
