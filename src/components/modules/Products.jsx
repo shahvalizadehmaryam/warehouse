@@ -17,7 +17,7 @@ const Products = ({ searchVal }) => {
     setPage(1); // Reset to page 1 on new search
   }, [searchVal]);
 
-  if (isPending) return <h3>Loading...</h3>;
+  // if (isPending) return <h3>Loading...</h3>;
   // if (error) return <p>دیتایی یافت نشد.</p>;
   // Open modal and set the product ID to delete
   const showDeleteModal = (productId) => {
@@ -52,7 +52,14 @@ const Products = ({ searchVal }) => {
           </tr>
         </thead>
         <tbody>
-        {error && (
+          {isPending && (
+            <tr>
+              <td colSpan="5" className={styles.loading}>
+                   loading...
+              </td>
+            </tr>
+          )}
+          {error && (
             <tr>
               <td colSpan="5" className={styles.errorTitle}>
                 داده ای یافت نشد.
