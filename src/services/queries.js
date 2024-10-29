@@ -8,7 +8,7 @@ const useGetAllProducts = (page, searchVal) => {
       `products?page=${page}&limit=10${searchParam}`,
       { signal }
     );
-    return response.data;
+    return response;
   };
 
   return useQuery({ queryKey, queryFn });

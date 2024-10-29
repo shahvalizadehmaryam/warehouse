@@ -1,37 +1,34 @@
 import styles from "./Pagination.module.css";
-// eslint-disable-next-line
-const Pagination = ({ page, setPage }) => {
-  const previousHandler = () => {
-    if (page <= 1) return;
-    setPage((page) => page - 1);
+
+const Pagination = ({ page, setPage, totalPages }) => {
+  const MAX_VISIBLE_PAGES = 5; // Number of pages to show at once
+
+  // Calculate the range of pages to display based on the current page
+  const getPageRange = () => {
+    const start = Math.max(1, page - Math.floor(MAX_VISIBLE_PAGES / 2));
+    const end = Math.min(totalPages, start + MAX_VISIBLE_PAGES - 1);
+    const pageRange = [];
+    for (let i = start; i <= end; i++) {
+      pageRange.push(i);
+    }
+    return pageRange;
   };
-  const nextHandler = () => {
-    if (page >= 5) return;
-    setPage((page) => page + 1);
+
+  const handlePageClick = (pageNumber) => {
+    setPage(pageNumber);
   };
+
   return (
     <div className={styles.pagination}>
-      <button
-        onClick={previousHandler}
-        className={page === 1 ? styles.disabled : null}
-      >
-        Previous
-      </button>
-      <p  className={page === 1 ? styles.selected : null}>
-        1
-      </p>
-      <p  className={page === 2 ? styles.selected : null}>
-        2
-      </p>
-      <p  className={page === 3 ? styles.selected : null}>
-        3
-      </p>
-      <button
-        onClick={nextHandler}
-        className={page === 3 ? styles.disabled : null}
-      >
-        Next
-      </button>
+      {getPageRange().map((pageNumber) => (
+        <p
+          key={pageNumber}
+          onClick={() => handlePageClick(pageNumber)}
+          className={page === pageNumber ? styles.selected : null}
+        >
+          {pageNumber}
+        </p>
+      ))}
     </div>
   );
 };

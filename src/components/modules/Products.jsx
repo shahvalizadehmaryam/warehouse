@@ -12,12 +12,13 @@ const Products = ({ searchVal }) => {
   const [page, setPage] = useState(1);
 
   const { data, isPending, error } = useGetAllProducts(page, searchVal);
+  const totalPages = data?.totalPages;
   useEffect(() => {
     setPage(1); // Reset to page 1 on new search
   }, [searchVal]);
 
   if (isPending) return <h3>Loading...</h3>;
-  if (error) return <p>دیتایی یافت نشد.</p>
+  // if (error) return <p>دیتایی یافت نشد.</p>;
   // Open modal and set the product ID to delete
   const showDeleteModal = (productId) => {
     setProductIdToDelete(productId);
@@ -51,12 +52,19 @@ const Products = ({ searchVal }) => {
           </tr>
         </thead>
         <tbody>
-          {data?.map((productItem) => (
+        {error && (
+            <tr>
+              <td colSpan="5" className={styles.errorTitle}>
+                داده ای یافت نشد.
+              </td>
+            </tr>
+          )}
+          {data?.data?.map((productItem) => (
             <tr key={productItem.id}>
               <td>{productItem.name}</td>
               <td>{productItem.price}</td>
               <td>{productItem.quantity}هزار تومان</td>
-              
+
               <td>{productItem.id}</td>
               <td>
                 <div className={styles.actions}>
@@ -72,7 +80,7 @@ const Products = ({ searchVal }) => {
           ))}
         </tbody>
       </table>
-      <Pagination page={page} setPage={setPage} />
+      <Pagination page={page} setPage={setPage} totalPages={totalPages} />
       <DeleteModal
         isOpen={isModalDeleteOpen}
         onClose={closeDeleteModal}
