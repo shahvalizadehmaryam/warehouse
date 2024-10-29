@@ -1,11 +1,20 @@
 import Router from "router/Router";
 import TanstackQueryProvider from "./providers/TanstackQueryProvider";
+import { Toaster } from "react-hot-toast";
+
+
 
 function App() {
   return (
-    <TanstackQueryProvider>
-      <Router />
-    </TanstackQueryProvider>
+    <>
+    <Toaster
+        position="top-left"
+        reverseOrder={false}
+      />
+      <TanstackQueryProvider>
+        <Router />
+      </TanstackQueryProvider>
+    </>
   );
 }
 

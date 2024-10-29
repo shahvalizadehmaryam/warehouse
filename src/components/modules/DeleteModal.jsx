@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import styles from "./DeleteModal.module.css";
 import { useDeleteProducts } from "services/mutations";
 const DeleteModal = ({ isOpen, onClose, productId }) => {
@@ -6,6 +7,7 @@ const DeleteModal = ({ isOpen, onClose, productId }) => {
   const confirmDeleteHandler = () => {
     mutate(productId, {
       onSuccess: (data) => {
+        toast.error("ایتم مورد نظر حذف شد");
         onClose();
       },
       onError: (error) => console.log("error in onError", error),

@@ -8,22 +8,30 @@ import { getCookie } from "../utils/cookie";
 
 const Router = () => {
   const token = getCookie("token");
- 
-  return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <AuthProvider>
-            <Home />
-          </AuthProvider>
-        }
-      />
 
-      <Route path="/register" element={token ? <Navigate to="/" /> : <RegistrationPage />} />
-      <Route path="/login" element={token ? <Navigate to="/" /> : <LoginPage />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+  return (
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <AuthProvider>
+              <Home />
+            </AuthProvider>
+          }
+        />
+
+        <Route
+          path="/register"
+          element={token ? <Navigate to="/" /> : <RegistrationPage />}
+        />
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/" /> : <LoginPage />}
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </>
   );
 };
 
