@@ -7,8 +7,8 @@ import { useProductsById } from "services/queries";
 const AddProductModal = ({ isOpen, onClose, productId }) => {
   const [form, setForm] = useState({
     name: "",
-    price: "",
-    quantity: "",
+    price: 0,
+    quantity: 0,
   });
 
   const queryClient = useQueryClient();
@@ -67,7 +67,7 @@ const AddProductModal = ({ isOpen, onClose, productId }) => {
             <div className={styles.formGroup}>
               <label>تعداد موجودی</label>
               <input
-                type="text"
+                type="number"
                 name="price"
                 value={form.price}
                 onChange={changeHandler}
@@ -77,7 +77,7 @@ const AddProductModal = ({ isOpen, onClose, productId }) => {
             <div className={styles.formGroup}>
               <label>قیمت</label>
               <input
-                type="text"
+                type="number"
                 name="quantity"
                 value={form.quantity}
                 onChange={changeHandler}
