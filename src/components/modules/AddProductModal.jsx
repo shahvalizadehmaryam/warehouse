@@ -34,6 +34,11 @@ const AddProductModal = ({ isOpen, onClose, productId }) => {
     const mutationFn = productId ? editProductMutate : addProductMutate;
     mutationFn(mutationData, {
       onSuccess: (data) => {
+        setForm({
+          name: "",
+          price: 0,
+          quantity: 0,
+        });
         onClose();
       },
       onError: (error) => console.log(error.response.data.message),
